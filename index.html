@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서비스 기획 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --border: #e8e4df;
+    --text-primary: #1a1814;
+    --text-secondary: #6b6560;
+    --text-light: #a09a94;
+    --accent-1: #2563eb;
+    --accent-1-light: #eff6ff;
+    --accent-2: #059669;
+    --accent-2-light: #ecfdf5;
+    --accent-3: #7c3aed;
+    --accent-3-light: #f5f3ff;
+    --highlight-light: #fffbeb;
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.05);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 72px 48px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-1);
+    background: var(--accent-1-light);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent-1); }
+  .hero-sub { font-size: 15px; color: var(--text-secondary); font-weight: 300; max-width: 560px; }
+  .hero-meta { margin-top: 36px; display: flex; gap: 40px; flex-wrap: wrap; }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .hero-meta-label {
+    font-size: 10px; color: var(--text-light);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: 'Space Mono', monospace;
+  }
+  .hero-meta-value { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+  /* MAIN */
+  .main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* CARD */
+  .project-card {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    animation: fadeUp 0.6s ease both;
+  }
+  .project-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .project-card:nth-child(1) { animation-delay: 0.05s; }
+  .project-card:nth-child(2) { animation-delay: 0.15s; }
+  .project-card:nth-child(3) { animation-delay: 0.25s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* CARD HEADER */
+  .card-header {
+    padding: 32px 36px 26px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .card-header::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 0 2px 2px 0;
+  }
+  .p1 .card-header::before { background: var(--accent-1); }
+  .p2 .card-header::before { background: var(--accent-2); }
+  .p3 .card-header::before { background: var(--accent-3); }
+
+  .card-index {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .p1 .card-index { color: var(--accent-1); }
+  .p2 .card-index { color: var(--accent-2); }
+  .p3 .card-index { color: var(--accent-3); }
+
+  .card-title { font-size: 21px; font-weight: 700; margin-bottom: 12px; line-height: 1.35; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  .p1 .tag { background: var(--accent-1-light); color: var(--accent-1); }
+  .p2 .tag { background: var(--accent-2-light); color: var(--accent-2); }
+  .p3 .tag { background: var(--accent-3-light); color: var(--accent-3); }
+
+  /* CARD BODY */
+  .card-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .section {
+    padding: 28px 28px 32px;
+    border-right: 1px solid var(--border);
+  }
+  .section:last-child { border-right: none; }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+    font-family: 'Space Mono', monospace;
+  }
+  .section-icon {
+    width: 24px; height: 24px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+  }
+  .section-problem .section-icon  { background: #fef2f2; }
+  .section-solution .section-icon { background: #f0fdf4; }
+  .section-impact .section-icon   { background: var(--highlight-light); }
+  .section-problem .section-label  { color: #dc2626; }
+  .section-solution .section-label { color: #16a34a; }
+  .section-impact .section-label   { color: #b45309; }
+
+  .section ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .section ul li {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .section ul li::before {
+    content: '·';
+    position: absolute;
+    left: 3px;
+    color: var(--text-light);
+    font-weight: 700;
+  }
+  .section-impact ul li { color: var(--text-primary); }
+
+  .num {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+  }
+  .num-big {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 14px;
+    background: var(--highlight-light);
+    color: #92400e;
+    padding: 1px 7px;
+    border-radius: 4px;
+    border: 1px solid #fde68a;
+  }
+
+  /* STAT CHIPS */
+  .stat-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .stat-chip {
+    background: var(--highlight-light);
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 7px 13px;
+    text-align: center;
+  }
+  .stat-chip-val {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: #92400e;
+    line-height: 1.2;
+    display: block;
+  }
+  .stat-chip-label { font-size: 10px; color: #b45309; display: block; margin-top: 2px; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-text { font-size: 12px; color: var(--text-light); font-family: 'Space Mono', monospace; }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .hero { padding: 48px 24px 40px; }
+    .card-header { padding: 24px 20px 20px; }
+    .card-body { grid-template-columns: 1fr; }
+    .section { border-right: none; border-bottom: 1px solid var(--border); padding: 22px 20px 26px; }
+    .section:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Service Planning Portfolio</div>
+    <h1>문제를 발견하고,<br><em>서비스로 바꿉니다</em></h1>
+    <p class="hero-sub">운영 비효율과 사용자 경험 문제를 발견하고,<br>AI를 활용한 기획-개발-배포까지 실질적 서비스 개선을 주도한 프로젝트</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Name</span>
+        <span class="hero-meta-value">김지현</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Projects</span>
+        <span class="hero-meta-value">4 Projects</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Focus</span>
+        <span class="hero-meta-value">신규 서비스 기획 · 플랫폼 사용성 개선 · AI 기반 업무 자동화</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- P1 -->
+  <article class="project-card" style="border-color:#fed7aa;">
+    <div class="card-header" style="position:relative;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 2px 2px 0;background:#ea580c;"></div>
+      <div class="card-index" style="color:#ea580c;">PROJECT 01</div>
+      <h2 class="card-title">아라폼(AraForm) 내부관리자 페이지 기획</h2>
+      <div class="card-tags">
+        <span class="tag" style="background:#fff7ed;color:#ea580c;">신규 서비스 기획</span>
+        <span class="tag" style="background:#fff7ed;color:#ea580c;">플랫폼 백오피스</span>
+        <span class="tag" style="background:#fff7ed;color:#ea580c;">Figma</span>
+        <span class="tag" style="background:#fff7ed;color:#ea580c;">신사업 TF</span>
+        <span class="tag" style="background:#fff7ed;color:#ea580c;">GitBook</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="section section-problem">
+        <div class="section-label"><div class="section-icon">⚠️</div>Problem</div>
+        <ul>
+          <li>진학사 신규 사업인 아라폼(AraForm) 출시 준비 단계에서 내부관리자 페이지가 없는 상태</li>
+          <li>기관 관리, 회원 관리, 금액권 관리 등 운영에 필요한 내부관리자 기능 부재로 서비스 운영 불가</li>
+        </ul>
+      </div>
+      <div class="section section-solution">
+        <div class="section-label"><div class="section-icon">🔧</div>Solution</div>
+        <ul>
+          <li>운영팀에서 TF로 합류하여 신규 서비스 런칭 준비 단계부터 기획 주도</li>
+          <li><span class="num">Figma</span>로 내부관리자 페이지 <span class="num">28개</span> 화면 설계 및 개발팀 협업으로 구현</li>
+          <li>기관별 서비스 사용 현황, 회원 관리, 금액권 관리 등 운영 핵심 기능 기획</li>
+          <li>GitBook 기반 아라폼 서비스 가이드 제작으로 운영 정보 관리 체계 완성</li>
+          <li>실제 운영 경험을 바탕으로 현장 흐름에 맞는 UX 설계</li>
+        </ul>
+      </div>
+      <div class="section section-impact">
+        <div class="section-label"><div class="section-icon">📈</div>Impact</div>
+        <div class="stat-chips">
+          <div class="stat-chip">
+            <span class="stat-chip-val">28개</span>
+            <span class="stat-chip-label">화면 설계 완료</span>
+          </div>
+        </div>
+        <ul>
+          <li>내부관리자 페이지 신규 설계로 아라폼 정식 출시 기반 마련</li>
+          <li>운영팀 관점의 기획으로 실무 친화적 백오피스 완성</li>
+          <li>GitBook 가이드 제작으로 서비스 운영 정보 체계화</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- P2 -->
+  <article class="project-card p1">
+    <div class="card-header">
+      <div class="card-index">PROJECT 02</div>
+      <h2 class="card-title">실적증명원 통합관리 시스템</h2>
+      <div class="card-tags">
+        <span class="tag">신규 서비스 기획</span>
+        <span class="tag">데이터 기반 설계</span>
+        <span class="tag">API 연동</span>
+        <span class="tag">운영 자동화</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Vercel</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="section section-problem">
+        <div class="section-label"><div class="section-icon">⚠️</div>Problem</div>
+        <ul>
+          <li>엑셀 수기 관리로 등기 등록 건당 <span class="num">약 50초</span> 소요 (매년 <span class="num">300건+</span>) — 반복적 비효율 구조 고착</li>
+          <li>도착/검수 상태 수기 관리로 누락·오류 반복, 데이터 신뢰도 저하</li>
+          <li>실적 데이터 분산으로 성과 비교·분석 불가 → 의사결정 지연</li>
+          <li><b>핵심 인사이트:</b> 입력·조회·상태관리를 시스템화하면 오류를 줄이고 데이터 기반 의사결정이 가능해진다</li>
+        </ul>
+      </div>
+      <div class="section section-solution">
+        <div class="section-label"><div class="section-icon">🔧</div>Solution</div>
+        <ul>
+          <li>웹 기반 통합관리 서비스 기획 및 구축, <span class="num">Vercel</span> 배포로 사내 접근 환경 구성</li>
+          <li><span class="num">Supabase</span>(PostgreSQL) 기반 DB 설계로 실시간 데이터 관리 및 권한 제어</li>
+          <li>바코드 스캐너 + 우체국 <span class="num">API</span> 연동으로 수기 입력 완전 제거</li>
+          <li>바코드 등록 시 운영자 자동 매칭 및 상태 자동 반영 (State Automation)</li>
+          <li>담당자별 대학·접수 유형 필터링 및 도착·검수율 퍼센테이지 시각화</li>
+          <li>학년도별 실적 대시보드로 데이터 기반 성과 비교 및 영업 전략 수립 지원</li>
+        </ul>
+      </div>
+      <div class="section section-impact">
+        <div class="section-label"><div class="section-icon">📈</div>Impact</div>
+        <div class="stat-chips">
+          <div class="stat-chip">
+            <span class="stat-chip-val">90%</span>
+            <span class="stat-chip-label">처리시간 단축</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-chip-val">−125분</span>
+            <span class="stat-chip-label">연간 절감 (300건 기준)</span>
+          </div>
+        </div>
+        <ul>
+          <li>등기 등록 시간 <span class="num-big">50초 → 5초</span></li>
+          <li>수기 입력 제거 및 데이터 오류 감소</li>
+          <li>운영 프로세스 단순화 및 표준화</li>
+          <li>데이터 기반 영업 의사결정 지원</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- P3 -->
+  <article class="project-card p2">
+    <div class="card-header">
+      <div class="card-index">PROJECT 03</div>
+      <h2 class="card-title">보증보험 자동 알림 시스템</h2>
+      <div class="card-tags">
+        <span class="tag">서비스 자동화 기획</span>
+        <span class="tag">리스크 관리</span>
+        <span class="tag">Microsoft Graph API</span>
+        <span class="tag">운영 안정성</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="section section-problem">
+        <div class="section-label"><div class="section-icon">⚠️</div>Problem</div>
+        <ul>
+          <li>보험 만료일 수기 확인 후 담당자가 직접 공지 — 사람에 의존한 구조</li>
+          <li>알림 누락 시 계약 공백 등 직접적 업무 리스크 발생 가능</li>
+          <li><b>핵심 인사이트:</b> 알림을 시스템화하면 리스크를 제거하고 운영 신뢰도를 높일 수 있다</li>
+        </ul>
+      </div>
+      <div class="section section-solution">
+        <div class="section-label"><div class="section-icon">🔧</div>Solution</div>
+        <ul>
+          <li><span class="num">SharePoint Excel</span>과 <span class="num">Microsoft Graph API</span>, <span class="num">Teams</span> 연동으로 데이터 소스 자동 연결</li>
+          <li>만료 <span class="num">20일 전</span> 자동 메일 발송 로직 설계 및 구현</li>
+          <li>발송 이력 Excel 자동 기록으로 감사 추적(Audit Trail) 가능하도록 설계</li>
+        </ul>
+      </div>
+      <div class="section section-impact">
+        <div class="section-label"><div class="section-icon">📈</div>Impact</div>
+        <div class="stat-chips">
+          <div class="stat-chip">
+            <span class="stat-chip-val">0건</span>
+            <span class="stat-chip-label">알림 누락</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-chip-val">100%</span>
+            <span class="stat-chip-label">자동화 달성</span>
+          </div>
+        </div>
+        <ul>
+          <li>반복 업무 완전 자동화로 운영 효율 향상</li>
+          <li>알림 누락 리스크 구조적으로 제거</li>
+          <li>발송 이력 자동 기록으로 운영 안정성 확보</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- P4 -->
+  <article class="project-card p3">
+    <div class="card-header">
+      <div class="card-index">PROJECT 04</div>
+      <h2 class="card-title">대학 관리자 서비스 개선</h2>
+      <div class="card-tags">
+        <span class="tag">플랫폼 UX 개선</span>
+        <span class="tag">사용자 경험 분석</span>
+        <span class="tag">서비스 고도화</span>
+        <span class="tag">Figma</span>
+        <span class="tag">ChatGPT</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="section section-problem">
+        <div class="section-label"><div class="section-icon">⚠️</div>Problem</div>
+        <ul>
+          <li>대학별로 각각 존재하던 지원자 기재사항 페이지로 인해 관리 파편화 및 운영 비효율 발생</li>
+          <li>관리자별 시스템 이해도 차이로 설정 오류·문의·수정 요청 지속 증가</li>
+          <li><b>핵심 인사이트:</b> 기재사항 페이지를 하나의 표준으로 통합하면 문의가 줄고 운영 효율이 개선된다</li>
+        </ul>
+      </div>
+      <div class="section section-solution">
+        <div class="section-label"><div class="section-icon">🔧</div>Solution</div>
+        <ul>
+          <li>대학별로 분산된 기재사항 페이지를 하나의 표준화된 구조로 통합 기획</li>
+          <li>관리자 페이지 사용자 흐름 분석 및 문제 구간 특정 후 설정 방식 개선</li>
+          <li>기획 도구 PPT → <span class="num">Figma</span> 전환으로 개선안 시각화 및 개발팀 협업 효율 향상</li>
+          <li>수정요청 프로세스 구조화 및 사용자 관점의 커뮤니케이션 가이드 수립</li>
+          <li><span class="num">ChatGPT</span> 활용해 매뉴얼 전면 업데이트 및 AI 기반 문서 표준화로 반복 업무 효율 개선</li>
+        </ul>
+      </div>
+      <div class="section section-impact">
+        <div class="section-label"><div class="section-icon">📈</div>Impact</div>
+        <div class="stat-chips">
+          <div class="stat-chip">
+            <span class="stat-chip-val">↓</span>
+            <span class="stat-chip-label">문의·수정 요청 감소</span>
+          </div>
+          <div class="stat-chip">
+            <span class="stat-chip-val">↑</span>
+            <span class="stat-chip-label">운영 효율화</span>
+          </div>
+        </div>
+        <ul>
+          <li>기재사항 페이지 표준화로 대학별 설정 오류 및 문의 건수 감소</li>
+          <li>Figma·AI 기반 기획 프로세스 표준화로 팀 생산성 향상</li>
+          <li>운영 구조 단순화로 서비스 안정성 및 운영 효율화 확보</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<footer class="footer">
+  <p class="footer-text">Service Planning Portfolio · 2026</p>
+</footer>
+
+</body>
+</html>
